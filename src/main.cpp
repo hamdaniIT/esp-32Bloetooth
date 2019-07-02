@@ -114,8 +114,20 @@ void loop()
 
   if ((i - 1) >= 0)
   {
-    erase_data();
-    writeString(0,dataIn);
-    printData();
+    Serial.println("arrive data bluetoots");
+    Serial.println(getValue(dataIn, '/', 0));
+    Serial.println(getValue(dataIn, '/', 1));
+    if(getValue(dataIn, '/', 0)=="write"){
+      String dataWr=getValue(dataIn, '/', 1);
+      writeString(0,dataWr);
+      Serial.println("write data ok");
+    }else if(dataIn=="read"){
+      printData();
+      Serial.println("read data ok");
+    }else if(dataIn=="rm"){
+      erase_data();
+      Serial.println("remove data ok");
+    }
+    
   }
 }
